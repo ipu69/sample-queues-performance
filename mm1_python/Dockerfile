@@ -24,6 +24,9 @@ RUN pip install flake8 pytest
 RUN mkdir /wheels
 
 COPY --from=build /wheels /wheels
+# For some reason, GitHub actions require this between successive COPY --from=... commands: 
+# https://github.community/t5/GitHub-Actions/Attempting-to-build-docker-image-with-COPY-from-on-Actions/td-p/36445
+RUN true
 COPY --from=build /app/requirements.txt .
 RUN ls -1A /wheels | grep -q . && pip install --no-cache /wheels/* || echo 'no wheels found'
 
@@ -42,6 +45,8 @@ WORKDIR /app
 RUN pip install --upgrade pip
 
 COPY --from=build /wheels /wheels
+# Once more, just for GitHub actions to work (see above):
+RUN true 
 COPY --from=build /app/requirements.txt .
 RUN ls -1A /wheels | grep -q . && pip install --no-cache /wheels/* || echo 'no wheels found'
 
