@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the mm1_python Docker image
-      run: docker build . --file mm1_python/Dockerfile --tag mm1_python:$(date +%s)
+      run: docker build mm1_python/ --file mm1_python/Dockerfile --tag mm1_python:$(date +%s)
