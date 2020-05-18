@@ -1,0 +1,21 @@
+name: Deploy docker images to GitHub registry
+
+# on:
+#   push:
+#     branches:
+#       - master
+#     tags:
+#       - v*
+
+jobs:
+  buildQueuePythonImage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build docker image and push it to GitHub
+        uses: docker/build-push-action@v1
+        with:
+          registry: docker.pkg.github.com
+          repository: $GITHUB_REPOSITORY/queue_python
+          tag_with_ref: true
+          path: queue_python/
