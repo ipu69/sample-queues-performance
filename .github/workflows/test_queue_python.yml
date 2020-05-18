@@ -4,13 +4,13 @@ on:
   push:
     branches: [ master ]
     paths:
-    - 'queue_python/'
+    - 'queue_python/**'
     - '.github/workflows/test_queue_python.yml'
   
   pull_request:
     branches: [ master ]
     paths:
-    - 'queue_python/'
+    - 'queue_python/**'
     - '.github/workflows/test_queue_python.yml'
   
 jobs:
