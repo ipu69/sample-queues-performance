@@ -1,8 +1,8 @@
-name: Docker Image CI
+name: test queue_python model
 
 on:
   push:
-    branches: [ master ]
+    # We want to run this action on any branch to make sure python code is ok
     paths:
     - 'queue_python/**'
     - '.github/workflows/test_queue_python.yml'
@@ -15,11 +15,28 @@ on:
   
 jobs:
 
-  build:
+  buildQueuePython:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the queue_python image
-      run: docker build -f queue_python/Dockerfile queue_python/ -t queue_python:${GITHUB_SHA}
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        pip install -r queue_python/requirements.txt
+    - name: Lint with flake8
+      run: |
+        # Stop the job if there are Python syntax or stylish errors
+        flake8 queue_python/*.py --count --statistics --show-source
+    - name: Test with pytest
+      run: |
+        pytest queue_python/
