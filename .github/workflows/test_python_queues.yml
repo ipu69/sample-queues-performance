@@ -21,5 +21,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the python_queue image
-      run: docker build -f python_queue/Dockerfile python_queue/ -t python_queue:${GITHUB_SHA}
+    - name: Build the queue_python image
+      run: docker build -f python_queue/Dockerfile queue_python/ -t python_queue:${GITHUB_SHA}
