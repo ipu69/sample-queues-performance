@@ -1,5 +1,7 @@
 name: Deploy docker images to GitHub registry
 
+on:
+  push
 # on:
 #   push:
 #     branches:
