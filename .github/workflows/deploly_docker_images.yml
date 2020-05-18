@@ -21,3 +21,5 @@ jobs:
           repository: ${{ github.repository }}/queue_python
           tag_with_ref: true
           path: queue_python/
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
