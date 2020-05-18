@@ -11,7 +11,7 @@ import sys
 #         description="Simulate M/M/1 -> ... */M/1 tandem network.")
 #     parser.add_argument('')
 def x_plus_y(x, y):
-    return x + y
+    return x + 2*y
 
 
 if __name__ == '__main__':

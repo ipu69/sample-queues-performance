@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+    - 'queue_python/'
+    - '.github/workflows/test_python_queues.yml'
+  
+  pull_request:
+    branches: [ master ]
+    paths:
+    - 'queue_python/'
+    - '.github/workflows/test_python_queues.yml'
+  
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the python_queue image
+      run: docker build -f python_queue/Dockerfile python_queue/ -t python_queue:${GITHUB_SHA}
