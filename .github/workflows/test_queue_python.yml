@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: test queue_python model
 
 on:
   push:
