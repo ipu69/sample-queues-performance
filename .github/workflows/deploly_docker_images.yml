@@ -18,6 +18,6 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           registry: docker.pkg.github.com
-          repository: $GITHUB_REPOSITORY/queue_python
+          repository: ${{ github.repository }}/queue_python
           tag_with_ref: true
           path: queue_python/
