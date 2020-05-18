@@ -14,8 +14,6 @@ def x_plus_y(x, y):
     return x + y
 
 
-
-
 if __name__ == '__main__':
     print('Hello, dockerized python app!')
     print('Your args are: ', sys.argv)
