@@ -1,13 +1,11 @@
 name: Deploy docker images to GitHub registry
 
 on:
-  push
-# on:
-#   push:
-#     branches:
-#       - master
-#     tags:
-#       - v*
+  push:
+    branches:
+      - master
+    tags:
+      - v*
 
 jobs:
   buildQueuePythonImage:
